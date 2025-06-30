@@ -1,0 +1,164 @@
+{
+  "version": "1.0.0",
+  "name": "MCP Lab",
+  "description": "Complete AI-powered automation ecosystem with Model Context Protocol servers",
+  "control_tower": {
+    "url": "http://localhost:4000",
+    "port": 4000
+  },
+  "services": {
+    "puppeteer-mcp": {
+      "url": "http://localhost:4040",
+      "port": 4040,
+      "category": "dev",
+      "description": "Website screenshots, PDF generation, and web scraping",
+      "status": "enabled",
+      "endpoints": ["/screenshot", "/pdf", "/scrape"],
+      "dependencies": ["puppeteer", "express", "dotenv"]
+    },
+    "file-mcp": {
+      "url": "http://localhost:4041",
+      "port": 4041,
+      "category": "dev",
+      "description": "File system operations - read, write, list, delete, copy files",
+      "status": "enabled",
+      "endpoints": ["/read", "/write", "/append", "/list", "/delete", "/copy"],
+      "dependencies": ["express", "dotenv"]
+    },
+    "claude-mcp": {
+      "url": "http://localhost:4042",
+      "port": 4042,
+      "category": "dev",
+      "description": "Claude AI integration for chat, code analysis, summarization, and translation",
+      "status": "enabled",
+      "endpoints": ["/chat", "/analyze-code", "/summarize", "/translate"],
+      "dependencies": ["@anthropic-ai/sdk", "express", "dotenv"],
+      "env_required": ["CLAUDE_API_KEY"]
+    },
+    "git-mcp": {
+      "url": "http://localhost:4043",
+      "port": 4043,
+      "category": "dev",
+      "description": "Git operations - add, commit, push, pull, branch management, and workflows",
+      "status": "enabled",
+      "endpoints": ["/status", "/add", "/commit", "/push", "/pull", "/branch", "/log", "/diff", "/quick-commit"],
+      "dependencies": ["express", "dotenv"]
+    },
+    "github-mcp": {
+      "url": "http://localhost:4044",
+      "port": 4044,
+      "category": "dev",
+      "description": "GitHub API integration for repository, issue, and pull request management",
+      "status": "enabled",
+      "endpoints": ["/create-repo", "/list-repos", "/create-issue", "/list-issues", "/create-pr", "/list-prs", "/repo-info", "/user-info", "/search-repos"],
+      "dependencies": ["@octokit/rest", "express", "dotenv"],
+      "env_required": ["GITHUB_TOKEN"]
+    },
+    "test-mcp": {
+      "url": "http://localhost:4045",
+      "port": 4045,
+      "category": "dev",
+      "description": "Test runner for Jest, Playwright, Vitest, and custom testing frameworks",
+      "status": "enabled",
+      "endpoints": ["/jest", "/playwright", "/vitest", "/custom", "/results", "/list-tests", "/report"],
+      "dependencies": ["express", "dotenv"]
+    },
+    "playwright-mcp": {
+      "url": "http://localhost:4046",
+      "port": 4046,
+      "category": "dev",
+      "description": "Advanced browser automation with Playwright - navigation, interaction, and data extraction",
+      "status": "enabled",
+      "endpoints": ["/navigate", "/screenshot", "/fill-form", "/extract", "/wait-for"],
+      "dependencies": ["playwright", "express", "dotenv"]
+    },
+    "deployment-mcp": {
+      "url": "http://localhost:4047",
+      "port": 4047,
+      "category": "dev",
+      "description": "Automated deployment to Vercel, Netlify, Firebase, GitHub Actions, and SSH targets",
+      "status": "enabled",
+      "endpoints": ["/vercel", "/netlify", "/firebase", "/github-actions", "/build", "/ssh-deploy", "/status"],
+      "dependencies": ["express", "axios", "dotenv"],
+      "env_required": ["VERCEL_TOKEN", "NETLIFY_AUTH_TOKEN", "GITHUB_TOKEN", "FIREBASE_TOKEN"]
+    },
+    "supabase-mcp": {
+      "url": "http://localhost:4050",
+      "port": 4050,
+      "category": "integration",
+      "description": "Supabase database operations, authentication, storage, and real-time subscriptions",
+      "status": "enabled",
+      "endpoints": ["/insert", "/select", "/update", "/delete", "/auth/signup", "/auth/signin", "/storage/upload", "/storage/url", "/rpc", "/realtime/setup"],
+      "dependencies": ["@supabase/supabase-js", "express", "dotenv"],
+      "env_required": ["SUPABASE_URL", "SUPABASE_ANON_KEY"]
+    },
+    "n8n-mcp": {
+      "url": "http://localhost:4051",
+      "port": 4051,
+      "category": "integration",
+      "description": "n8n workflow automation integration - trigger webhooks, execute workflows, and manage automation",
+      "status": "enabled",
+      "endpoints": ["/webhook/:webhookId", "/workflow/:workflowId/execute", "/workflow/:workflowId/status", "/execution/:executionId", "/workflows", "/workflow/:workflowId/toggle"],
+      "dependencies": ["express", "axios", "dotenv"],
+      "env_required": ["N8N_BASE_URL", "N8N_API_KEY"]
+    },
+    "docker-mcp": {
+      "url": "http://localhost:4052",
+      "port": 4052,
+      "category": "integration",
+      "description": "Docker container management - run, stop, start, remove containers and Docker Compose operations",
+      "status": "enabled",
+      "endpoints": ["/run", "/containers", "/stop", "/start", "/remove", "/exec", "/logs", "/compose/:action"],
+      "dependencies": ["express", "dotenv"]
+    },
+    "ai-copilot-mcp": {
+      "url": "http://localhost:4060",
+      "port": 4060,
+      "category": "devops",
+      "description": "Natural language interface to control all MCP services - the brain of the MCP Lab",
+      "status": "enabled",
+      "endpoints": ["/execute", "/services/health", "/commands"],
+      "dependencies": ["@anthropic-ai/sdk", "axios", "express", "dotenv"],
+      "env_required": ["CLAUDE_API_KEY"]
+    }
+  },
+  "categories": {
+    "dev": {
+      "name": "Development",
+      "description": "Core development tools and automation",
+      "icon": "🛠️"
+    },
+    "integration": {
+      "name": "Integration",
+      "description": "External service integrations and APIs",
+      "icon": "🔗"
+    },
+    "devops": {
+      "name": "DevOps",
+      "description": "Deployment, monitoring, and orchestration",
+      "icon": "⚙️"
+    }
+  },
+  "startup_order": [
+    "file-mcp",
+    "git-mcp",
+    "claude-mcp",
+    "puppeteer-mcp",
+    "playwright-mcp",
+    "test-mcp",
+    "github-mcp",
+    "deployment-mcp",
+    "supabase-mcp",
+    "n8n-mcp",
+    "docker-mcp",
+    "ai-copilot-mcp"
+  ],
+  "port_range": {
+    "start": 4000,
+    "end": 4100,
+    "control_tower": 4000,
+    "dev_services": "4040-4049",
+    "integration_services": "4050-4059",
+    "devops_services": "4060-4069"
+  }
+}

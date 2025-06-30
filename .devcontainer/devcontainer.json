@@ -1,0 +1,73 @@
+{
+  "name": "MCP Lab Development Environment",
+  "image": "mcr.microsoft.com/devcontainers/javascript-node:20",
+  
+  "features": {
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {},
+    "ghcr.io/devcontainers/features/git:1": {},
+    "ghcr.io/devcontainers/features/github-cli:1": {}
+  },
+
+  "forwardPorts": [
+    4000, 4040, 4041, 4042, 4043, 4044, 4045, 4046, 4047, 
+    4050, 4051, 4052, 4053, 4054, 4055, 
+    4060, 4061, 4062, 4063, 4064, 4065,
+    5678
+  ],
+
+  "portsAttributes": {
+    "4000": {
+      "label": "Control Tower Dashboard",
+      "onAutoForward": "openBrowser"
+    },
+    "4040": {"label": "Puppeteer MCP"},
+    "4041": {"label": "File MCP"},
+    "4042": {"label": "Claude MCP"},
+    "4043": {"label": "Git MCP"},
+    "4044": {"label": "GitHub MCP"},
+    "4045": {"label": "Test MCP"},
+    "4046": {"label": "Playwright MCP"},
+    "4047": {"label": "Deployment MCP"},
+    "4050": {"label": "Supabase MCP"},
+    "4051": {"label": "n8n MCP"},
+    "4052": {"label": "Docker MCP"},
+    "4060": {"label": "AI Copilot MCP"},
+    "5678": {"label": "n8n Workflow Automation"}
+  },
+
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-vscode.vscode-json",
+        "esbenp.prettier-vscode",
+        "ms-vscode.vscode-typescript-next",
+        "bradlc.vscode-tailwindcss",
+        "ms-playwright.playwright",
+        "github.copilot",
+        "github.copilot-chat"
+      ],
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "bash",
+        "editor.formatOnSave": true,
+        "editor.codeActionsOnSave": {
+          "source.fixAll": true
+        }
+      }
+    }
+  },
+
+  "postCreateCommand": "npm install -g nodemon pm2 && echo '🚀 MCP Lab Environment Ready!'",
+
+  "postStartCommand": "cd mcp-servers/control-tower && npm install && npm start &",
+
+  "remoteUser": "node",
+
+  "mounts": [
+    "source=mcp-lab-node-modules,target=${containerWorkspaceFolder}/node_modules,type=volume"
+  ],
+
+  "containerEnv": {
+    "NODE_ENV": "development",
+    "MCP_LAB_VERSION": "1.0.0"
+  }
+}

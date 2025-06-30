@@ -1,0 +1,19 @@
+{
+  "name": "supabase-mcp",
+  "version": "1.0.0",
+  "description": "**Port:** 4050   **Purpose:** Supabase database operations, authentication, storage, and real-time subscriptions",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@supabase/supabase-js": "^2.50.2",
+    "dotenv": "^17.0.0",
+    "express": "^5.1.0"
+  }
+}

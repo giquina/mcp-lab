@@ -1,0 +1,111 @@
+{
+  "serverConfig": {
+    "command": "cmd.exe",
+    "args": [
+      "/c"
+    ]
+  },
+  "mcpServers": {
+    "desktop-commander": {
+      "command": "npx.cmd",
+      "args": [
+        "@wonderwhy-er/desktop-commander@latest"
+      ]
+    },
+    "playwright": {
+      "command": "npx",
+      "args": [
+        "@playwright/mcp@latest"
+      ]
+    },
+    "figma": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "figma-developer-mcp",
+        "--stdio"
+      ],
+      "env": {
+        "FIGMA_API_KEY": "REPLACE_WITH_YOUR_FIGMA_API_KEY"
+      }
+    },
+    "github": {
+      "command": "docker",
+      "args": [
+        "run",
+        "-i",
+        "--rm",
+        "-e",
+        "GITHUB_PERSONAL_ACCESS_TOKEN",
+        "ghcr.io/github/github-mcp-server"
+      ],
+      "env": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "REPLACE_WITH_YOUR_GITHUB_TOKEN"
+      }
+    },
+    "notion": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@notionhq/notion-mcp-server"
+      ],
+      "env": {
+        "OPENAPI_MCP_HEADERS": "{\"Authorization\": \"Bearer REPLACE_WITH_YOUR_NOTION_TOKEN\", \"Notion-Version\": \"2022-06-28\"}"
+      }
+    },
+    "mobile-mcp": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@mobilenext/mobile-mcp@latest"
+      ]
+    },
+    "react-native-debugger": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@twodoorsdev/react-native-debugger-mcp"
+      ]
+    },
+    "docker": {
+      "command": "docker",
+      "args": [
+        "run",
+        "-i",
+        "--rm",
+        "docker/mcp-servers-docker"
+      ]
+    },
+    "deepseek": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "deepseek-mcp-server"
+      ],
+      "env": {
+        "DEEPSEEK_API_KEY": "REPLACE_WITH_YOUR_DEEPSEEK_API_KEY"
+      }
+    },
+    "gemini": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "gemini-mcp-tool"
+      ],
+      "env": {
+        "GEMINI_API_KEY": "REPLACE_WITH_YOUR_GEMINI_API_KEY"
+      }
+    },
+    "zen-ai": {
+      "command": "node",
+      "args": [
+        "C:\\zen-mcp-server\\dist\\index.js"
+      ],
+      "env": {
+        "GEMINI_API_KEY": "REPLACE_WITH_YOUR_GEMINI_API_KEY",
+        "OPENAI_API_KEY": "REPLACE_WITH_YOUR_OPENAI_API_KEY",
+        "XAI_API_KEY": "REPLACE_WITH_YOUR_GROK_API_KEY"
+      }
+    }
+  }
+}
